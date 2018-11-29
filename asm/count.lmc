@@ -1,0 +1,51 @@
+#instructions = {
+#    "LDA": "5",     # Load the content from address to accumulator
+#    "STA": "3",     # Store the accumulator to the address
+#    "ADD": "1",     # Add the number at the address to the accumulator
+#    "SUB": "2",     # Subtract the content of the address from the accumulator
+#    "INP": "f001",  # Take user input
+#    "OUT": "f002",  # Output accumulator
+#    "HLT": "0000",  # Halt the program
+#    "BRA": "6",     # Branch to address
+#    "BRZ": "7",     # Branch if accumulator is zero
+#    "BRP": "8",     # Branch if accumulator is positive or zero
+#    "BRD": "f008",  # Branch to the location specified in the ALU
+#    "DAT": "",      # Data Storage
+#    "PSH": "f003",  # Push accumulator to stack
+#    "POP": "f004",  # Pop top of stack to accumulator
+#    "PEK": "f005",  # Peak top of stack to accumulator
+#}
+
+        ACC     start
+        BRD
+        HLT
+
+start   INP
+        STA     input
+        BRA     down
+
+down    PSH
+        SUB     one
+        BRZ     up
+        BRA     down
+
+up      ADD     one
+        PSH
+        STA     hold
+        SUB     input
+        BRZ     print
+        LDA     hold
+        BRA     up
+
+print   POP
+        OUT
+        BRZ     halt
+        BRA     print
+
+halt    HLT
+
+
+input   DAT
+one     DAT     1
+zero    DAT     0
+hold    DAT

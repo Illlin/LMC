@@ -1,0 +1,55 @@
+# Enter assembler code here
+# To add comments begin lines with #
+#Code lines have 3 entries separated by tabs
+#First an optional label,
+#second an instruction mnemonic
+#and third an address label if required
+#Valid mnemonics are:
+# HLT, ADD, SUB, STO, LDA,
+# BR, BRZ, BRP, IN, OUT, DAT
+#Code
+	    INP
+	    STA	num2
+	    INP
+	    STA	num1
+
+#Get lowest number in number2
+	    SUB	num2
+	    BRP	mul
+	    BRZ	mul
+	    LDA	num1
+	    STA	total
+	    LDA	num2
+	    STA	num1
+	    LDA	total
+	    STA	num2
+	    LDA	zero
+	    STA	total
+	
+
+#Multiplication
+mul	    LDA	total
+	    ADD	num1
+	    STA	total
+	    LDA	num2
+    	SUB	one
+	    STA	num2
+	    BRZ	end
+	    BRA	mul
+	
+
+#END CODE
+end	    LDA	total
+	    OUT
+	    HLT
+
+#Defining variables
+
+num1	DAT	0
+num2	DAT	0
+total	DAT	0
+one	    DAT	1
+zero	DAT	0
+
+
+

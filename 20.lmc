@@ -1,0 +1,16 @@
+        INP
+main    STA entery
+        BRA test
+fail    LDA entery
+        ADD one
+        BRA main
+test    SUB ten
+        BRZ pass
+        BRP test
+        BRA fail
+pass    LDA entery
+        OUT
+        HLT
+entery  DAT 0
+ten     DAT 10
+one     DAT 1

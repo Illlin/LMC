@@ -1,0 +1,57 @@
+#instructions = {
+#    "LDA": "5",     # Load the content from address to accumulator
+#    "STA": "3",     # Store the accumulator to the address
+#    "ADD": "1",     # Add the number at the address to the accumulator
+#    "SUB": "2",     # Subtract the content of the address from the accumulator
+#    "INP": "f001",  # Take user input
+#    "OUT": "f002",  # Output accumulator
+#    "HLT": "0000",  # Halt the program
+#    "BRA": "6",     # Branch to address
+#    "BRZ": "7",     # Branch if accumulator is zero
+#    "BRP": "8",     # Branch if accumulator is positive or zero
+#    "DAT": "",      # Data Storage
+#	 "PSH": "f003",	 # Push accumulator to stack
+#	 "POP": "f004",	 # Pop top of stack to accumulator
+#	 "PEK": "f005",	 # Peak top of stack to accumulator
+#}
+
+# Get user input for 2 numbers
+        INP
+        STA num1
+        INP
+        STA num2
+        
+# Sort to num1 is smallest
+        SUB num1
+        BRP multi
+        BRA swap
+
+# Swap num1 and num2
+swap    LDA num1
+        STA hold
+        LDA num2
+        STA num1
+        LDA hold
+        STA num2
+        BRA multi
+
+# Multiply num1 and num2
+multi   LDA num1
+        BRZ end
+        SUB one
+        STA num1
+        LDA total
+        ADD num2
+        STA total
+        BRA multi
+
+end     LDA total
+        OUT
+        HLT
+
+one     DAT 1
+zero    DAT 0
+num1    DAT    
+num2    DAT
+hold    DAT
+total   DAT

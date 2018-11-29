@@ -1,0 +1,60 @@
+# HLT, ADD, SUB, STO, LDA,
+# BR, BRZ, BRP, IN, OUT, DAT
+# Start
+	    INP
+	    STA	num
+
+loop	LDA	count  # Test
+	    ADD	one     # Test
+        STA	count
+	    BRA sqr
+
+loopbk	SUB	num
+	    BRZ	endz
+	    BRP	end
+	    BRA	loop
+
+
+end	    LDA	count
+	    SUB	one
+	    OUT
+	    HLT
+
+endz	LDA	count
+	    OUT
+	    HLT
+
+
+sqr	    STA	sqtot
+	    STA	sqhld
+	    STA	sqcnt
+
+sqlp	LDA	sqcnt
+	    SUB	one
+	    STA	sqcnt
+    	BRZ	sqend
+	    LDA	sqtot
+	    ADD	sqhld
+    	STA	sqtot
+	    BRA	sqlp
+
+sqend	LDA	sqtot
+	    BRA	loopbk
+		
+sqhld	DAT
+sqtot	DAT
+sqcnt	DAT
+
+one	    DAT	1
+num	    DAT 
+count	DAT	0
+
+
+
+
+
+
+
+
+
+

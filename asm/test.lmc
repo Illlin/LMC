@@ -1,0 +1,71 @@
+#instructions = {
+#    "HLT": "0000",     # Halt the program
+#    "ADD": "1",     # Add the number at the address to the LDAumulator
+#    "SUB": "2",     # Subtract the content of the address from the LDAumulator
+#    "STA": "3",     # Store the LDAumulator to the address
+#    "LDA": "4",     # Set the acuumulator to the given value
+#    "LDA": "5",     # Load the content from address to LDAumulator
+#
+#    "BRA": "6",     # Branch to address
+#    "BRZ": "7",     # Branch if LDAumulator is zero
+#    "BRP": "8",     # Branch if LDAumulator is positive or zero
+#    "BRN": "9",     # Branch if LDAumulator is negitive
+#    "BRD": "f008",  # Branch to the location specified in the ALU
+#
+#    "AND": "a",     # Binary And
+#    "NOT": "f00a",  # Binary Not
+#    "XOR": "b",     # Binary Xor
+#    "ORR": "c",     # Binary Or
+#    "LSH": "d",     # Binary Left shift
+#    "RSH": "e",     # Binary Right shift
+#
+#
+#    "INP": "f001",  # Take user input
+#    "OUT": "f002",  # Output LDAumulator
+#    "PNT": "f003",  # Print the charicter in the LDAumulator 
+#    "PSH": "f004",  # Push LDAumulator to stack
+#    "POP": "f005",  # Pop top of stack to LDAumulator
+#    "PEK": "f006",  # Peak top of stack to LDAumulator    
+#
+#    "DAT": "",      # Data Storage
+#}
+start   LDA d
+        PSH
+        LDA l
+        PSH
+        LDA r
+        PSH
+        LDA o
+        PSH
+        LDA W
+        PSH
+        LDA sp
+        PSH
+        LDA o
+        PSH
+        LDA l
+        PSH
+        LDA l
+        PSH
+        LDA e
+        PSH
+        LDA H
+        PSH
+
+print   POP
+        BRZ end
+        PNT
+        BRA print
+
+end     HLT
+
+
+num1    DAT
+H       DAT 72
+e       DAT 101
+l       DAT 108
+o       DAT 111
+sp      DAT 32
+W       DAT 87
+r       DAT 114
+d       DAT 100
