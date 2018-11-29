@@ -1,6 +1,6 @@
 #  Author: Illin
 #  Sep 2018
-file_to_load = "20.lmc"
+file_to_load = "asm/sqrt.dat"
 
 #  ---- Constants ----
 instructions = {
